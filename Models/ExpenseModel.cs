@@ -1,3 +1,7 @@
+
+/**
+ * Represents an expense in the expense tracker application.
+ */
 public class ExpenseModel
 {
     public int Id { get; set; }
