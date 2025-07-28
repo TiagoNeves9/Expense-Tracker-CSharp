@@ -3,9 +3,10 @@
 *  It ensures that the data entered by the user meets the required criteria
 */
 
-using System;
 namespace Utilities
 {
+using Models;
+using System;
     public static class InputValidator
     {
         public static bool IsValidExpenseDescription(string description)

@@ -1,9 +1,14 @@
-public enum Category
+
+namespace Models
 {
-    Food,
-    Transport,
-    Entertainment,
-    Utilities,
-    Health,
-    Other
+    public enum Category
+    {
+        Food,
+        Transport,
+        Entertainment,
+        Utilities,
+        Health,
+        Income,
+        Other
+    }
 }
