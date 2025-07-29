@@ -9,6 +9,7 @@ namespace Models
         Utilities,
         Health,
         Income,
+        Bills,
         Other
     }
 }

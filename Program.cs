@@ -8,33 +8,60 @@
     class Program
     {
         static void Main(string[] args)
-        {
-            // Initialize the expense tracker application
-            RunExpenseTracker();
-        }
-
-        private static void RunExpenseTracker()
-        {
-            // Here you would typically set up your application, such as initializing services, loading data, etc.
+        {   
+            ExpenseService expenseService = new ExpenseService();
             Console.WriteLine("Welcome to the Expense Tracker!");
-            // For demonstration purposes, we can create a simple flow.
-            InitializeExpenses();
+            Console.WriteLine("Type 'help' for available commands or 'quit/exit' to exit.");
+            while (true)
+            {
+                Console.Write("> ");
+
+                string? input = Console.ReadLine();
+
+                //Handle empty input
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    continue;
+                }
+
+                string command = input.Trim().ToLower();
+
+                switch (command)
+                {
+                    case "help":
+                    case "h":
+                        ConsoleUtilities.Help();
+                        break;
+
+                    case "quit":
+                    case "exit":
+                        Console.WriteLine("Exiting the program. Goodbye!");
+                        return;
+
+                    case "expense":
+                    case "add expense":
+                        ConsoleUtilities.AddExpense(expenseService);
+                        break;
+
+                    case "income":
+                    case "add income":
+                        ConsoleUtilities.AddIncome(expenseService);
+                        break;
+
+                    case "balance":
+                    case "show balance":
+                        ConsoleUtilities.ShowBalance(expenseService);
+                        break;
+                    default:
+                        Console.WriteLine("Unknown command. Type 'help' for available commands.");
+                        break;
+                }
+
+                Console.WriteLine();
+
+            }
         }
 
-        private static void InitializeExpenses()
-        {
-            // Example of how to use the InputValidator and ExpenseService
-            var expenseService = new ExpenseService();
-
-            // Add some expenses and incomes
-            expenseService.AddIncome("Salary", 3000m, Category.Income);
-            expenseService.AddExpense("Groceries", 150m, Category.Food);
-            expenseService.AddExpense("Gas", 60m, Category.Transport);
-
-            // Display total balance
-            decimal balance = expenseService.GetTotalBalance();
-            Console.WriteLine($"Total Balance: {balance:C}");
-        }
     }
 
 }
